@@ -1,3 +1,8 @@
+"""
+This file contains the tests for dna.py
+
+author: Devan Kavalchek
+"""
 from dna import *
 
 def test_dna_init():
@@ -6,7 +11,7 @@ def test_dna_init():
 
     assert(offspring.genome == genome)
 
-    print("test_dna_init passed!")
+    print("test_dna_init passed!") # Prints if the test passess
 
 def test_dna_fitness():
     genome = "00c0e000i"
@@ -15,7 +20,7 @@ def test_dna_fitness():
 
     assert(offspring.fitness() == 3)
 
-    print("test_dna_fitness passed!")
+    print("test_dna_fitness passed!") # Prints if the test passes
 
 def run_all_tests():
     test_dna_init()
