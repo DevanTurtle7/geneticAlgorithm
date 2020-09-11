@@ -2,7 +2,7 @@ import dna
 
 def test_dna_init():
     genome = "This is my genome"
-    test_dna = dna.dna(genome)
+    test_dna = dna.dna(genome, None)
 
     assert(test_dna.genome == genome)
 
