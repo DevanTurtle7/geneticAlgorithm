@@ -1,1 +1,1 @@
-import dna_obj
+import dna
