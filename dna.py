@@ -18,15 +18,15 @@ class dna():
 
 
     def crossover(self, mate, debug=False):
-        half_point = random.randrange(len(self.genome))
-        new_genome = mate.genoem[0:half_point] + self.genome[half_point:len(self.genome)]
+        midpoint = random.randrange(len(self.genome))
+        new_genome = self.genome[0:midpoint] + mate.genome[midpoint:len(mate.genome)]
         
         offspring = dna(new_genome, self.target)
 
         if not debug:
             return offspring
         else:
-            return offspring, half_point
+            return offspring, midpoint
 
     def fitness(self):
         fitness = 0
