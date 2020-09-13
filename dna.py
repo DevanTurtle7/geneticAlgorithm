@@ -4,6 +4,8 @@ This file contains the DNA class object.
 author: Devan Kavalchek
 """
 
+import random
+
 class dna():
     def __init__(self, genome, target):
         """
@@ -15,8 +17,16 @@ class dna():
         self.target = target
 
 
-    def crossover(self):
-        pass
+    def crossover(self, mate, debug=False):
+        half_point = random.randrange(len(self.genome))
+        new_genome = mate.genoem[0:half_point] + self.genome[half_point:len(self.genome)]
+        
+        offspring = dna(new_genome, self.target)
+
+        if not debug:
+            return offspring
+        else:
+            return offspring, half_point
 
     def fitness(self):
         fitness = 0
