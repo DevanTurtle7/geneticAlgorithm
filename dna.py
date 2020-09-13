@@ -15,8 +15,9 @@ class dna():
             genome: The genome of self
             target: The ideal genome. Used to analyze the fitness of self
         """
-        assert(len(genome) == len(target))
+        assert(len(genome) == len(target)) # Check that the length of the genome and the length of the target are the same
 
+        # Assign self's values to the given variables
         self.genome = genome
         self.target = target
 
