@@ -5,6 +5,7 @@ author: Devan Kavalchek
 """
 
 import random
+import globals
 
 class dna():
     def __init__(self, genome, target):
@@ -40,6 +41,13 @@ class dna():
         new_genome = self.genome[0:midpoint] + mate.genome[midpoint:len(mate.genome)] # A new genome made from a mix of the 2 genomes
         
         offspring = dna(new_genome, self.target) # A new offspring/child made from the new genome
+
+        """
+        # Mutations v
+        for i in range(0, len(offspring.genome)):
+            random.randrange(0, 1, 0.01)
+            if i 
+        """
 
         if not debug:
             return offspring
