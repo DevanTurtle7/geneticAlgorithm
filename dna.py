@@ -10,6 +10,10 @@ class dna():
     def __init__(self, genome, target):
         """
         Runs the first time the object is created
+
+        Parameters:
+            genome: The genome of self
+            target: The ideal genome. Used to analyze the fitness of self
         """
         assert(len(genome) == len(target))
 
@@ -19,11 +23,11 @@ class dna():
 
     def crossover(self, mate, debug=False):
         """
-        This function crosses the genomes of this offspring with
+        This function crosses the genome of self with
         another given offspring and returns a new offspring.
         
         The function picks a random midpoint and takes the genetic information
-        from parent 1 before that midpoint and combines it with the genetic
+        from before the midpoint in self's genome and combines it with the genetic
         information of parent 2 after that midpoint. It then makes a new
         offspring from that new genome and returns it.
 
@@ -39,14 +43,20 @@ class dna():
         if not debug:
             return offspring
         else:
+            # If debug mode is on, return the offspring and the midpoint
             return offspring, midpoint
 
     def fitness(self):
+        """
+        This function analyzes the fitness of self and returns
+        the fitntess score.
+        """
         # Initialize variables
         fitness = 0
 
-        for i in range(0, len(self.genome)):
+        for i in range(0, len(self.genome)): # Iterate over every character of the genome
             if self.genome[i] == self.target[i]:
+                # If the genome character at index i matches the character at target i, add 1 to the fitness score
                 fitness += 1
         
         return fitness
