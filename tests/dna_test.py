@@ -32,6 +32,7 @@ def test_dna_fitness():
 
 def test_dna_crossover():
     # Setup
+    # Create 2 offsprings with different genomes
     parent_1 = dna("00000000", "taargeet")
     parent_2 = dna("11111111", "taargeet")
 

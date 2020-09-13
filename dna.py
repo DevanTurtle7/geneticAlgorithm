@@ -18,7 +18,7 @@ class dna():
 
 
     def crossover(self, mate, debug=False):
-        midpoint = random.randrange(len(self.genome))
+        midpoint = random.randrange(1, len(self.genome)-1) # Must include atleast 1 bit of genetic information from each parent
         new_genome = self.genome[0:midpoint] + mate.genome[midpoint:len(mate.genome)]
         
         offspring = dna(new_genome, self.target)
