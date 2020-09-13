@@ -32,9 +32,9 @@ class dna():
             debug: If True, this function returns the midpoint as well as the new offspring. Default set to False.
         """
         midpoint = random.randrange(1, len(self.genome)-1) # A random midpoint. Must include atleast 1 bit of genetic information from each parent
-        new_genome = self.genome[0:midpoint] + mate.genome[midpoint:len(mate.genome)] 
+        new_genome = self.genome[0:midpoint] + mate.genome[midpoint:len(mate.genome)] # A new genome made from a mix of the 2 genomes
         
-        offspring = dna(new_genome, self.target)
+        offspring = dna(new_genome, self.target) # A new offspring/child made from the new genome
 
         if not debug:
             return offspring
