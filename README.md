@@ -1,4 +1,4 @@
-#Genetic Algorithm
+# Genetic Algorithm
 ## Inspiration
 Test
 
