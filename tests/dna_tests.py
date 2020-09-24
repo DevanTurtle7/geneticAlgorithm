@@ -68,7 +68,7 @@ def test_mutation():
     random.seed(1290809) # Set the seed so that the function can be predictably tested
     parent_1 = dna("00000000", "taargeet")
     parent_2 = dna("11111111", "taargeet")
-    expected_genome = "eyorkowx"
+    expected_genome = "ebtoskj "
 
     # Invoke
     offspring = parent_1.crossover(parent_2) # Call crossover and save the returned offspring
