@@ -6,6 +6,8 @@ author: Devan Kavalchek
 """
 
 MUTATION_RATE = 0.01
+POPULATION_SIZE = 1000
+MATING_POOL_SIZE = 500
 charset = 'abcdefghijklmnopwrstuvwxyz '
 target = "to be or not to be"
 

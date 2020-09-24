@@ -2,7 +2,7 @@ from dna import *
 import globals
 import random
 
-POPULATION_SIZE = 1000
+POPULATION_SIZE = globals.POPULATION_SIZE
 
 def main():
 
