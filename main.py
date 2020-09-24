@@ -25,5 +25,7 @@ def main():
         offspring = dna(random_genome, target) # Create the dna object
         population.append(offspring) # Add the offspring to the population
 
+
+
 if __name__ == "__main__":
     main()
