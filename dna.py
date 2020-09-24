@@ -64,7 +64,8 @@ class dna():
         This function analyzes the fitness of self and returns
         the fitntess score.
         """
-        # Initialize variables fitness = 0
+        # Initialize variables
+        fitness = 0
 
         for i in range(0, len(self.genome)): # Iterate over every character of the genome
             if self.genome[i] == self.target[i]:

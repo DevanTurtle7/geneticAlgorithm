@@ -60,6 +60,9 @@ def weighted_element(array):
     """
     Returns a random element from a given array, with a higher percentage to choose
     an element towards the end of the array
+
+    Parameters:
+        array: The array to select the element from
     """
     # f(x) = 1 - (2 ^ (-10x))
 
@@ -67,7 +70,7 @@ def weighted_element(array):
     weighted_index_float = 1 - (2 ** (-10 * random_num)) # Input the random number into the weighted function
     weighted_index = int(len(array) * weighted_index_float) # Turn that number (0-1) to an index (the percentage through the array)
 
-    return array[weighted_index]
+    return array[weighted_index] # Return the element at the index
 
 def main():
     # Create an initial population
@@ -95,10 +98,17 @@ def main():
     optimal_genome_found = False
 
     while not optimal_genome_found:
-        mating_pool = []
         optimal_genome_found = True
 
         ordered_population = sort_population(population)
+        MATING_POOL_SIZE = globals.MATING_POOL_SIZE
+        mating_pool = []
+
+        # Choose N mates
+        for i in range(0, MATING_POOL_SIZE):
+            random_mate = weighted_element(ordered_population)
+            mating_pool.append(random_mate)
+            ordered_population.remove(random_mate) # Remove so they are not chosen twice in a row
 
         """
         for offspring in ordered_population:
