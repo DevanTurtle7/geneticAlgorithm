@@ -56,6 +56,19 @@ def sort_population(population):
     
     return ordered_population
 
+def weighted_element(array):
+    """
+    Returns a random element from a given array, with a higher percentage to choose
+    an element towards the end of the array
+    """
+    # f(x) = 1 - (2 ^ (-10x))
+
+    random_num = random.random() # Get a random number
+    weighted_index_float = 1 - (2 ** (-10 * random_num)) # Input the random number into the weighted function
+    weighted_index = int(len(array) * weighted_index_float) # Turn that number (0-1) to an index (the percentage through the array)
+
+    return array[weighted_index]
+
 def main():
     # Create an initial population
 

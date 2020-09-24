@@ -45,7 +45,7 @@ class dna():
         # Mutations
         if not debug: # Don't predict if in debug mode for more predictable crossovers
             for i in range(0, len(offspring.genome)):
-                mutation_chance = random.randrange(0, 1)
+                mutation_chance = random.random()
 
                 # If the random mutation_chance falls beneath or equal to the mutation rate, mutate the dna
                 if mutation_chance <= globals.MUTATION_RATE:
@@ -64,8 +64,7 @@ class dna():
         This function analyzes the fitness of self and returns
         the fitntess score.
         """
-        # Initialize variables
-        fitness = 0
+        # Initialize variables fitness = 0
 
         for i in range(0, len(self.genome)): # Iterate over every character of the genome
             if self.genome[i] == self.target[i]:
