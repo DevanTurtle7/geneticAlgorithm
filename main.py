@@ -6,9 +6,10 @@ POPULATION_SIZE = globals.POPULATION_SIZE
 
 def sort_population(population):
     ordered_population = []
+    population_length = len(population)
 
     # Create a list of all offspring ordered by their fitness
-    for i in range(0, POPULATION_SIZE):
+    for i in range(0, population_length):
         offspring = population[i]
         offspring_fitness = offspring.fitness()
                 
