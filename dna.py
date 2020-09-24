@@ -44,7 +44,6 @@ class dna():
 
         # Mutations
         if not debug: # Don't predict if in debug mode for more predictable crossovers
-            print(offspring.genome)
             for i in range(0, len(offspring.genome)):
                 mutation_chance = random.randrange(0, 1)
 
@@ -52,8 +51,7 @@ class dna():
                 if mutation_chance <= globals.MUTATION_RATE:
                     # Mutate
                     random_char_index = random.randrange(0, len(globals.charset))
-                    offspring.genome[i] = globals.charset[random_char_index]
-                    print("mutated")
+                    offspring.genome = globals.change_string_index(offspring.genome, i, globals.charset[random_char_index]) # Replace the DNA at the current index
 
         if not debug:
             return offspring

@@ -56,12 +56,17 @@ def test_mutation():
     random.seed(1290809)
     parent_1 = dna("00000000", "taargeet")
     parent_2 = dna("11111111", "taargeet")
+    expected_genome = "eyorkowx"
 
     # Invoke
     offspring = parent_1.crossover(parent_2) # Call crossover and save the returned offspring
-    print(offspring.genome)
+
+    # Analyze
+    assert(offspring.genome == expected_genome)
 
     globals.MUTATION_RATE = old_mutation_rate
+
+    print("test_mutation passed!")
 
 def run_all_tests():
     """
