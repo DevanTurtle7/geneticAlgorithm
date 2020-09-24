@@ -7,6 +7,7 @@ author: Devan Kavalchek
 
 MUTATION_RATE = 0.01
 charset = 'abcdefghijklmnopwrstuvwxyz '
+target = "to be or not to be"
 
 def change_string_index(string, index, new_char):
     """
