@@ -1,6 +1,14 @@
+"""
+Tests the global functions to make sure it they are functioning properly.
+"""
+
 import globals
 
 def test_change_string_first():
+    """
+    Tests the change_string_first() function by giving it a standard input
+    and checking that the expected string is being returned
+    """
     # Setup
     string = "hello"
     index = 0
@@ -16,6 +24,10 @@ def test_change_string_first():
     print("test_change_string_index_0 passed!") # Prints if the test passes
 
 def test_change_string_last():
+    """
+    Tests the change_string_first() function by giving it a standard input
+    and checking that the expected string is being returned
+    """
     # Setup
     string = "racecar"
     index = 6
@@ -31,6 +43,10 @@ def test_change_string_last():
     print("test_change_string_index_last passed!") # Prints if the test passes
 
 def test_change_string_middle():
+    """
+    Tests the change_string_first() function by giving it a standard input
+    and checking that the expected string is being returned
+    """
     # Setup
     string = "turtoise"
     index = 4
@@ -46,6 +62,9 @@ def test_change_string_middle():
     print("test_change_string_index_middle passed!") # Prints if the test passes
 
 def run_all_tests():
+    """
+    Runs all the tests
+    """
     test_change_string_first()
     test_change_string_last()
     test_change_string_middle()
