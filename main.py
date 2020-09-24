@@ -14,7 +14,7 @@ def main():
     charset_length = len(globals.charset)
     population = []
 
-    for i in range(0, POPULATION_SIZE):
+    for _ in range(0, POPULATION_SIZE):
         random_genome = ""
 
         for index in range(0, target_length):
