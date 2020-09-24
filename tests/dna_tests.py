@@ -4,6 +4,7 @@ This file contains the tests for dna.py
 author: Devan Kavalchek
 """
 from dna import *
+import globals
 
 def test_dna_init():
     # Setup
@@ -48,6 +49,20 @@ def test_dna_crossover():
 
     print("test_dna_crossover passed!")
 
+def test_mutation():
+    # Setup
+    old_mutation_rate = globals.MUTATION_RATE
+    globals.MUTATION_RATE = 1
+    random.seed(1290809)
+    parent_1 = dna("00000000", "taargeet")
+    parent_2 = dna("11111111", "taargeet")
+
+    # Invoke
+    offspring = parent_1.crossover(parent_2) # Call crossover and save the returned offspring
+    print(offspring.genome)
+
+    globals.MUTATION_RATE = old_mutation_rate
+
 def run_all_tests():
     """
     Runs all the tests
@@ -55,5 +70,6 @@ def run_all_tests():
     test_dna_init()
     test_dna_fitness()
     test_dna_crossover()
+    test_mutation()
 
 run_all_tests()

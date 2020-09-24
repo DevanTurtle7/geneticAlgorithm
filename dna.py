@@ -42,12 +42,18 @@ class dna():
         
         offspring = dna(new_genome, self.target) # A new offspring/child made from the new genome
 
-        """
-        # Mutations v
-        for i in range(0, len(offspring.genome)):
-            random.randrange(0, 1, 0.01)
-            if i 
-        """
+        # Mutations
+        if not debug: # Don't predict if in debug mode for more predictable crossovers
+            print(offspring.genome)
+            for i in range(0, len(offspring.genome)):
+                mutation_chance = random.randrange(0, 1)
+
+                # If the random mutation_chance falls beneath or equal to the mutation rate, mutate the dna
+                if mutation_chance <= globals.MUTATION_RATE:
+                    # Mutate
+                    random_char_index = random.randrange(0, len(globals.charset))
+                    offspring.genome[i] = globals.charset[random_char_index]
+                    print("mutated")
 
         if not debug:
             return offspring
