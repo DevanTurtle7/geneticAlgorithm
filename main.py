@@ -4,64 +4,78 @@ import random
 
 POPULATION_SIZE = globals.POPULATION_SIZE
 
-def sort_population(population):
-    ordered_population = []
-    population_length = len(population)
+def midpoint(upper_bound, lower_bound):
+    """
+    Returns the midpoint between 2 numbers
 
-    # Create a list of all offspring ordered by their fitness
-    for i in range(0, population_length):
-        offspring = population[i]
-        offspring_fitness = offspring.fitness()
-                
-        if i == 0:
-            ordered_population.append(population[i])
-        elif i == 1:
-            if ordered_population[0].fitness() >= offspring_fitness:
-                ordered_population.insert(0, offspring)
-            else:
-                ordered_population.append(offspring)
-        else:
-            found_index = False
-            index = int(len(ordered_population)/2)
-
-            while not found_index:
-                if index < 0 or index >= len(ordered_population):
-                    print("error")
-                    break
-                elif index == 0:
-                    if ordered_population[index + 1].fitness() >= offspring_fitness:
-                        found_index = True
-                    else:
-                        index += 1
-                elif index == len(ordered_population) - 1:
-                    if ordered_population[index - 1].fitness() <= offspring_fitness:
-                        found_index = True
-                        index += 1
-                    else:
-                        index -= 1
-                else:
-                    if ordered_population[index].fitness() <= offspring_fitness:
-                        if ordered_population[index + 1].fitness() >= offspring_fitness:
-                            index += 1
-                            found_index = True
-                        else:
-                            index += 1
-                    else:
-                        if ordered_population[index - 1].fitness() <= offspring_fitness:
-                            found_index = True
-                            index -= 1
-                        else:
-                            index -= 1
-
-            ordered_population.insert(index, offspring)
-    
-    return ordered_population
+    Parameters:
+        upper_bound: The larger of the 2 numbers
+        lower_bound: The smaller number
+    """
+    difference = upper_bound - lower_bound
+    mid = lower_bound + int(difference / 2)
+    return mid
 
 def find_index(value, array):
-    # Use a while loop or something
-    pass
+    """
+    Finds the index where an item can be inserted into an array such that
+    the final array is organized from smallest to largest by using binary
+    search techniques.
 
-def sort_population_wip(population):
+    Note: This function is currently modified to only work with DNA objects,
+    as it calls fitness() when comparing elements.
+
+    Parameters:
+        value: The value of new element being inserted into the array
+        array: The array the element is being inserted into
+    """
+    # Setup
+    found_index = False
+    length = len(array) # Save the length of the array
+    upper_bound = length - 1
+    lower_bound = 0
+    index = 0
+
+    # Check for small arrays
+    if length == 0:
+        return 0
+    elif length == 1:
+        if array[0].fitness() <= value:
+            return 1
+        else:
+            return 0
+
+    # Loop until the index is found
+    while not found_index:
+        index = midpoint(upper_bound, lower_bound) # Reset the index as the midpoint between the upper and lower bounds
+
+        if upper_bound == lower_bound:
+            if array[index].fitness() < value:
+                index += 1
+            found_index = True
+        elif upper_bound - lower_bound == 1:
+            if array[upper_bound].fitness() < value:
+                index = upper_bound + 1
+                found_index = True
+            else:
+                if array[lower_bound].fitness() <= value:
+                    index = lower_bound + 1
+                    found_index = True
+                else:
+                    index = lower_bound
+                    found_index = True
+        else:
+            if array[index].fitness() > value:
+                upper_bound = index-1
+            elif array[index].fitness() < value:
+                lower_bound = index
+            elif array[index].fitness() == value:
+                found_index = True
+    
+    
+    return index
+
+def sort_population(population):
     """
     Sorts an array of DNA objects by fitness using binary search techniques
     """
@@ -69,30 +83,11 @@ def sort_population_wip(population):
     population_length = len(population)
 
     for offspring in population:
-
-        # Safety testing:
-        if len(ordered_population) >= 3:
-            for x in range(1, len(ordered_population), 1):
-                if ordered_population[x-1].fitness() > ordered_population[x].fitness():
-                    print("ERRRRORRR!!! PRINTINTG ARRAY:")
-                    for offspring in ordered_population:
-                        print(offspring.fitness())
-                    raise "ERROR!"
-
-        print("NEW OFFSPRING")
-        print()
         offspring_fitness = offspring.fitness()
-        print("The fitness is", offspring_fitness)
         index = find_index(offspring_fitness, ordered_population)
         ordered_population.insert(index, offspring)
-    
-    print("ARRAY:")
-    for offspring in ordered_population:
-        print(offspring.fitness())
 
     return ordered_population
-
-
 
 def weighted_element(array):
     """
