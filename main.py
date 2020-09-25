@@ -69,6 +69,8 @@ def sort_population_wip(population):
     population_length = len(population)
 
     for offspring in population:
+
+        # Safety testing:
         if len(ordered_population) >= 3:
             for x in range(1, len(ordered_population), 1):
                 if ordered_population[x-1].fitness() > ordered_population[x].fitness():
