@@ -57,6 +57,41 @@ def sort_population(population):
     
     return ordered_population
 
+def find_index(value, array):
+    # Use a while loop or something
+    pass
+
+def sort_population_wip(population):
+    """
+    Sorts an array of DNA objects by fitness using binary search techniques
+    """
+    ordered_population = []
+    population_length = len(population)
+
+    for offspring in population:
+        if len(ordered_population) >= 3:
+            for x in range(1, len(ordered_population), 1):
+                if ordered_population[x-1].fitness() > ordered_population[x].fitness():
+                    print("ERRRRORRR!!! PRINTINTG ARRAY:")
+                    for offspring in ordered_population:
+                        print(offspring.fitness())
+                    raise "ERROR!"
+
+        print("NEW OFFSPRING")
+        print()
+        offspring_fitness = offspring.fitness()
+        print("The fitness is", offspring_fitness)
+        index = find_index(offspring_fitness, ordered_population)
+        ordered_population.insert(index, offspring)
+    
+    print("ARRAY:")
+    for offspring in ordered_population:
+        print(offspring.fitness())
+
+    return ordered_population
+
+
+
 def weighted_element(array):
     """
     Returns a random element from a given array, with a higher percentage to choose

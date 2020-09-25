@@ -1,3 +1,8 @@
+"""
+Runs all tests automatically when ran.
+
+author: Devan Kavalchek
+"""
 print("dna_tests:")
 import dna_tests
 print()
