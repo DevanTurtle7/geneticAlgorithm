@@ -113,6 +113,8 @@ def main():
     target_length = len(target)
     charset_length = len(globals.charset)
     population = []
+    next_generation = []
+    first_generation = True
     
     # Create N offspring with random genomes
     for _ in range(0, POPULATION_SIZE):
@@ -131,17 +133,39 @@ def main():
     optimal_genome_found = False
 
     while not optimal_genome_found:
-        optimal_genome_found = True
+        if not first_generation:
+            population = next_generation # Set the current population to the new population
+        else:
+            first_generation = False
 
         ordered_population = sort_population(population)
+        most_fit = ordered_population[len(ordered_population) - 1]
+
+        print("Most fit:",most_fit.genome)
+
+        if most_fit.genome == globals.target:
+            optimal_genome_found = True
+
         MATING_POOL_SIZE = globals.MATING_POOL_SIZE
         mating_pool = []
 
         # Choose N mates
-        for i in range(0, MATING_POOL_SIZE):
+        for _ in range(0, MATING_POOL_SIZE):
             random_mate = weighted_element(ordered_population)
             mating_pool.append(random_mate)
             ordered_population.remove(random_mate) # Remove so they are not chosen twice in a row
+        
+        children = POPULATION_SIZE // MATING_POOL_SIZE # How many children each offspring needs to have to repopulate the population
+
+        for mate in mating_pool:
+            for _ in range(0, children): # Create the correct number of offspring to repopulate the population
+                # Pick a random mate
+                random_index = random.randrange(0, len(mating_pool))
+                random_mate = mating_pool[random_index]
+                
+                # Create a new offspring
+                offspring = mate.crossover(random_mate)
+                next_generation.append(offspring)
 
         """
         for offspring in ordered_population:
