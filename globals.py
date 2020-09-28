@@ -6,7 +6,7 @@ author: Devan Kavalchek
 """
 
 class algorithm_settings:
-    def __init__(self, MUTATION_RATE, POPULATION_SIZE, MATING_POOL_SIZE, generation_cap, target):
+    def __init__(self, MUTATION_RATE, POPULATION_SIZE, MATING_POOL_SIZE, generation_cap, target=None):
         self.MUTATION_RATE = MUTATION_RATE
         self.POPULATION_SIZE = POPULATION_SIZE
         self.MATING_POOL_SIZE = MATING_POOL_SIZE # NOTE: POPULATION_SIZE divided by MATING_POOL_SIZE should be an int
@@ -14,6 +14,7 @@ class algorithm_settings:
         self.target = target
 
 shakespearean_settings = algorithm_settings(0.01, 1000, 500, False, "to be or not to be")
+salesman_settings = algorithm_settings(0.01, 1000, 500, 100)
 
 charset = 'abcdefghijklmnopwrstuvwxyz '
 

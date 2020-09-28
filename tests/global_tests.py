@@ -1,5 +1,7 @@
 """
 Tests the global functions to make sure it they are functioning properly.
+
+author: Devan Kavalchek
 """
 
 import globals

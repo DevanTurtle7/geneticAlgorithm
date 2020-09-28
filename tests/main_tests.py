@@ -1,5 +1,5 @@
 import main
-from dna import *
+from shakespearean_dna import *
 
 def test_sort_population():
     # Setup

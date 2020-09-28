@@ -1,4 +1,8 @@
-from dna import *
+"""
+author: Devan Kavalchek
+"""
+
+from shakespearean_dna import *
 import globals
 import random
 

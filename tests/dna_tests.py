@@ -3,7 +3,7 @@ This file contains the tests for dna.py
 
 author: Devan Kavalchek
 """
-from dna import *
+from shakespearean_dna import *
 import globals
 
 shakespearean_settings = globals.shakespearean_settings
