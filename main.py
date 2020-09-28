@@ -129,8 +129,17 @@ def main():
     
     # Continue to breed new generations until the optimal genome is found
     optimal_genome_found = False
+    count = 0
+    GENERATION_CAP = globals.GENERATION_CAP
 
     while not optimal_genome_found:
+        count += 1
+
+        if GENERATION_CAP is not False:
+            if count > GENERATION_CAP:
+                print("Generation cap was reached")
+                break
+        
         if not first_generation:
             population = next_generation # Set the current population to the new population
             next_generation = [] # Reset next_generation
@@ -165,6 +174,9 @@ def main():
                 # Create a new offspring
                 offspring = mate.crossover(random_mate)
                 next_generation.append(offspring)
+
+    if optimal_genome_found:
+        print("Success! It took", count, "generations!")
 
 if __name__ == "__main__":
     main()

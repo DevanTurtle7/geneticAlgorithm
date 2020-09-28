@@ -8,6 +8,7 @@ author: Devan Kavalchek
 MUTATION_RATE = 0.01
 POPULATION_SIZE = 1000
 MATING_POOL_SIZE = 500 # NOTE: POPULATION_SIZE divided by MATING_POOL_SIZE should be an int
+GENERATION_CAP = False # The maximum amount of generations. Set to False or an int
 charset = 'abcdefghijklmnopwrstuvwxyz '
 target = "to be or not to be"
 
