@@ -5,12 +5,17 @@ in this project.
 author: Devan Kavalchek
 """
 
-MUTATION_RATE = 0.01
-POPULATION_SIZE = 1000
-MATING_POOL_SIZE = 500 # NOTE: POPULATION_SIZE divided by MATING_POOL_SIZE should be an int
-GENERATION_CAP = False # The maximum amount of generations. Set to False or an int
+class algorithm_settings:
+    def __init__(self, MUTATION_RATE, POPULATION_SIZE, MATING_POOL_SIZE, generation_cap, target):
+        self.MUTATION_RATE = MUTATION_RATE
+        self.POPULATION_SIZE = POPULATION_SIZE
+        self.MATING_POOL_SIZE = MATING_POOL_SIZE # NOTE: POPULATION_SIZE divided by MATING_POOL_SIZE should be an int
+        self.generation_cap = generation_cap # The maximum amount of generations. Set to False or an int
+        self.target = target
+
+shakespearean_settings = algorithm_settings(0.01, 1000, 500, False, "to be or not to be")
+
 charset = 'abcdefghijklmnopwrstuvwxyz '
-target = "to be or not to be"
 
 def change_string_index(string, index, new_char):
     """

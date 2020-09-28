@@ -6,6 +6,8 @@ author: Devan Kavalchek
 from dna import *
 import globals
 
+shakespearean_settings = globals.shakespearean_settings
+
 def test_shakespearean_dna_init():
     """
     Tests that the dna class properly creates an offspring
@@ -63,8 +65,8 @@ def test_shakespearean_mutation():
     A characterization test that tests that the DNA mutates properly
     """
     # Setup
-    old_mutation_rate = globals.MUTATION_RATE # Remember the current mutation rate
-    globals.MUTATION_RATE = 1 # Set the mutation rate to 100% so that the function can be predictably tested
+    old_mutation_rate = shakespearean_settings.MUTATION_RATE # Remember the current mutation rate
+    shakespearean_settings.MUTATION_RATE = 1 # Set the mutation rate to 100% so that the function can be predictably tested
     random.seed(1290809) # Set the seed so that the function can be predictably tested
     parent_1 = shakespearean_dna("00000000", "taargeet")
     parent_2 = shakespearean_dna("11111111", "taargeet")
@@ -76,7 +78,7 @@ def test_shakespearean_mutation():
     # Analyze
     assert(offspring.genome == expected_genome)
 
-    globals.MUTATION_RATE = old_mutation_rate # Set the mutation rate back to normal
+    shakespearean_settings.MUTATION_RATE = old_mutation_rate # Set the mutation rate back to normal
 
     print("test_shakespearean_mutation passed!") # Prints if the test passes
 

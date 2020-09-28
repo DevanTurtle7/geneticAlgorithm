@@ -2,7 +2,9 @@ from dna import *
 import globals
 import random
 
-POPULATION_SIZE = globals.POPULATION_SIZE
+shakespearean_settings = globals.shakespearean_settings
+
+POPULATION_SIZE = shakespearean_settings.POPULATION_SIZE
 
 def midpoint(upper_bound, lower_bound):
     """
@@ -106,7 +108,7 @@ def weighted_element(array):
 
 def shakespearean_algorithm():
      # Setup
-    target = globals.target
+    target = shakespearean_settings.target
     target_length = len(target)
     charset_length = len(globals.charset)
     population = []
@@ -127,13 +129,13 @@ def shakespearean_algorithm():
     # Continue to breed new generations until the optimal genome is found
     optimal_genome_found = False
     count = 0
-    GENERATION_CAP = globals.GENERATION_CAP
+    generation_cap = shakespearean_settings.generation_cap
 
     while not optimal_genome_found:
         count += 1
 
-        if GENERATION_CAP is not False:
-            if count > GENERATION_CAP:
+        if generation_cap is not False:
+            if count > generation_cap:
                 print("Generation cap was reached")
                 break
         
@@ -148,10 +150,10 @@ def shakespearean_algorithm():
 
         print("Most fit:",most_fit.genome)
 
-        if most_fit.genome == globals.target:
+        if most_fit.genome == shakespearean_settings.target:
             optimal_genome_found = True
 
-        MATING_POOL_SIZE = globals.MATING_POOL_SIZE
+        MATING_POOL_SIZE = shakespearean_settings.MATING_POOL_SIZE
         mating_pool = []
 
         # Choose N mates

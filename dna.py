@@ -7,6 +7,8 @@ author: Devan Kavalchek
 import random
 import globals
 
+shakespearean_settings = globals.shakespearean_settings
+
 class shakespearean_dna():
     def __init__(self, genome, target):
         """
@@ -48,7 +50,7 @@ class shakespearean_dna():
                 mutation_chance = random.random()
 
                 # If the random mutation_chance falls beneath or equal to the mutation rate, mutate the dna
-                if mutation_chance <= globals.MUTATION_RATE:
+                if mutation_chance <= shakespearean_settings.MUTATION_RATE:
                     # Mutate
                     random_char_index = random.randrange(0, len(globals.charset))
                     offspring.genome = globals.change_string_index(offspring.genome, i, globals.charset[random_char_index]) # Replace the DNA at the current index
