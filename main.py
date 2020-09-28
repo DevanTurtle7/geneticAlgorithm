@@ -125,8 +125,6 @@ def main():
         offspring = dna(random_genome, target) # Create the dna object
         population.append(offspring) # Add the offspring to the population
     
-
-    
     # Continue to breed new generations until the optimal genome is found
     optimal_genome_found = False
     count = 0
