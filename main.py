@@ -106,8 +106,6 @@ def weighted_element(array):
     return array[weighted_index] # Return the element at the index
 
 def main():
-    # Create an initial population
-
     # Setup
     target = globals.target
     target_length = len(target)
@@ -126,15 +124,16 @@ def main():
         
         offspring = dna(random_genome, target) # Create the dna object
         population.append(offspring) # Add the offspring to the population
+    
 
     
     # Continue to breed new generations until the optimal genome is found
-
     optimal_genome_found = False
 
     while not optimal_genome_found:
         if not first_generation:
             population = next_generation # Set the current population to the new population
+            next_generation = [] # Reset next_generation
         else:
             first_generation = False
 
@@ -166,11 +165,6 @@ def main():
                 # Create a new offspring
                 offspring = mate.crossover(random_mate)
                 next_generation.append(offspring)
-
-        """
-        for offspring in ordered_population:
-            print(offspring.fitness())
-        """
 
 if __name__ == "__main__":
     main()
