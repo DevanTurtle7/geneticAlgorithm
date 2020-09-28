@@ -7,7 +7,7 @@ author: Devan Kavalchek
 import random
 import globals
 
-class dna():
+class shakespearean_dna():
     def __init__(self, genome, target):
         """
         Runs the first time the object is created
@@ -40,7 +40,7 @@ class dna():
         midpoint = random.randrange(1, len(self.genome)-1) # A random midpoint. Must include atleast 1 bit of genetic information from each parent
         new_genome = self.genome[0:midpoint] + mate.genome[midpoint:len(mate.genome)] # A new genome made from a mix of the 2 genomes
         
-        offspring = dna(new_genome, self.target) # A new offspring/child made from the new genome
+        offspring = shakespearean_dna(new_genome, self.target) # A new offspring/child made from the new genome
 
         # Mutations
         if not debug: # Don't predict if in debug mode for more predictable crossovers

@@ -6,7 +6,7 @@ author: Devan Kavalchek
 from dna import *
 import globals
 
-def test_dna_init():
+def test_shakespearean_dna_init():
     """
     Tests that the dna class properly creates an offspring
     """
@@ -14,14 +14,14 @@ def test_dna_init():
     genome = "This is my genome"
 
     # Invoke
-    offspring = dna(genome, genome)
+    offspring = shakespearean_dna(genome, genome)
 
     # Analyze
     assert(offspring.genome == genome)
 
-    print("test_dna_init passed!") # Prints if the test passess
+    print("test_shakespearean_dna_init passed!") # Prints if the test passess
 
-def test_dna_fitness():
+def test_shakespearean_dna_fitness():
     """
     Tests that the dna is accurately analyzing the function of each genome
     """
@@ -30,21 +30,21 @@ def test_dna_fitness():
     target = "abcdefghi"
 
     # Invoke
-    offspring = dna(genome, target)
+    offspring = shakespearean_dna(genome, target)
 
     # Analyze
     assert(offspring.fitness() == 3)
 
-    print("test_dna_fitness passed!") # Prints if the test passes
+    print("test_shakespearean_dna_fitness passed!") # Prints if the test passes
 
-def test_dna_crossover():
+def test_shakespearean_dna_crossover():
     """
     A test that ensures the DNA's crossover function is working properly
     """
     # Setup
     # Create 2 offsprings with different genomes
-    parent_1 = dna("00000000", "taargeet")
-    parent_2 = dna("11111111", "taargeet")
+    parent_1 = shakespearean_dna("00000000", "taargeet")
+    parent_2 = shakespearean_dna("11111111", "taargeet")
 
     # Invoke
     offspring = parent_1.crossover(parent_2, True) # Call crossover with debug mode on
@@ -56,9 +56,9 @@ def test_dna_crossover():
 
     assert(offspring_genome == expected_genome)
 
-    print("test_dna_crossover passed!") # Prints if the test passes
+    print("test_shakespearean_dna_crossover passed!") # Prints if the test passes
 
-def test_mutation():
+def test_shakespearean_mutation():
     """
     A characterization test that tests that the DNA mutates properly
     """
@@ -66,8 +66,8 @@ def test_mutation():
     old_mutation_rate = globals.MUTATION_RATE # Remember the current mutation rate
     globals.MUTATION_RATE = 1 # Set the mutation rate to 100% so that the function can be predictably tested
     random.seed(1290809) # Set the seed so that the function can be predictably tested
-    parent_1 = dna("00000000", "taargeet")
-    parent_2 = dna("11111111", "taargeet")
+    parent_1 = shakespearean_dna("00000000", "taargeet")
+    parent_2 = shakespearean_dna("11111111", "taargeet")
     expected_genome = "ebtoskj "
 
     # Invoke
@@ -78,15 +78,15 @@ def test_mutation():
 
     globals.MUTATION_RATE = old_mutation_rate # Set the mutation rate back to normal
 
-    print("test_mutation passed!") # Prints if the test passes
+    print("test_shakespearean_mutation passed!") # Prints if the test passes
 
 def run_all_tests():
     """
     Runs all the tests
     """
-    test_dna_init()
-    test_dna_fitness()
-    test_dna_crossover()
-    test_mutation()
+    test_shakespearean_dna_init()
+    test_shakespearean_dna_fitness()
+    test_shakespearean_dna_crossover()
+    test_shakespearean_mutation()
 
 run_all_tests()

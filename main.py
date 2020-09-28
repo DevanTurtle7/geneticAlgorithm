@@ -80,7 +80,6 @@ def sort_population(population):
     Sorts an array of DNA objects by fitness using binary search techniques
     """
     ordered_population = []
-    population_length = len(population)
 
     for offspring in population:
         offspring_fitness = offspring.fitness()
@@ -105,8 +104,8 @@ def weighted_element(array):
 
     return array[weighted_index] # Return the element at the index
 
-def main():
-    # Setup
+def shakespearean_algorithm():
+     # Setup
     target = globals.target
     target_length = len(target)
     charset_length = len(globals.charset)
@@ -118,11 +117,11 @@ def main():
     for _ in range(0, POPULATION_SIZE):
         random_genome = ""
 
-        for index in range(0, target_length):
+        for _ in range(0, target_length):
             random_index = random.randrange(0, charset_length) # Choose a random character from charset to add to the genome
             random_genome += globals.charset[random_index] # Add the random character to the end of the temporary genome string
         
-        offspring = dna(random_genome, target) # Create the dna object
+        offspring = shakespearean_dna(random_genome, target) # Create the dna object
         population.append(offspring) # Add the offspring to the population
     
     # Continue to breed new generations until the optimal genome is found
@@ -175,6 +174,9 @@ def main():
 
     if optimal_genome_found:
         print("Success! It took", count, "generations!")
+
+def main():
+   shakespearean_algorithm()
 
 if __name__ == "__main__":
     main()

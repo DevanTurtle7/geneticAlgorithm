@@ -9,7 +9,7 @@ def test_sort_population():
     
     # Create a sample population
     for i in range(0, 4):
-        offspring = dna(genomes[i], target)
+        offspring = shakespearean_dna(genomes[i], target)
         population.append(offspring)
 
     # Invoke
