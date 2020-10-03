@@ -1,5 +1,5 @@
 """
-This file contains the tests for dna.py
+This file contains the tests for shakespearean_cdna.py
 
 author: Devan Kavalchek
 """
