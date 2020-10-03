@@ -49,8 +49,8 @@ class salesman_dna():
                 # If the random mutation_chance falls beneath or equal to the mutation rate, mutate the dna
                 if mutation_chance <= salesman_settings.MUTATION_RATE:
                     # Mutate
-                    random_char_index = random.randrange(0, len(globals.charset))
-                    offspring.genome = globals.change_string_index(offspring.genome, i, globals.charset[random_char_index]) # Replace the DNA at the current index
+                    random_index = random.randrange(0, len(offspring.genome)) # Pick a random element to swap with
+                    offspring.genome[i], offspring.genome[random_index] = offspring.genome[random_index], offspring.genome[i] # Swap
 
         if not debug:
             return offspring

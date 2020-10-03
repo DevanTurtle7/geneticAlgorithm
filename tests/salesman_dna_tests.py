@@ -71,6 +71,12 @@ def test_salesman_dna_crossover():
 
     print("test_salesman_dna_crossover passed!")
 
+def test_salesman_dna_mutation():
+    """
+    A characterization test that tests that the DNA mutates properly
+    """
+    pass
+
 def run_all_tests():
     """
     Runs all the tests
@@ -79,5 +85,6 @@ def run_all_tests():
     test_salesman_dna_fitness_square()
     test_salesman_dna_fitness_pentagon()
     test_salesman_dna_crossover()
+    test_salesman_dna_mutation()
 
 run_all_tests()
