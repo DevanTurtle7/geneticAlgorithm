@@ -46,18 +46,27 @@ def change_string_index(string, index, new_char):
     new_string = first_half + new_char + second_half # Create the new string by sandwiching the new character between the first and second halves
     return new_string
 
-def weighted_element(array):
+def increasing_function(n):
+    # f(x) = 1 - (2 ^ (-10x))
+    return 1 - (2 ** (-10 * n))
+
+def decreasing_function(n):
+    # f(x) = 1 - (2 ^ (10(x - 1))
+    return 1 - (2 ** (10 * (n - 1)))
+
+def weighted_element(array, weighted_function=increasing_function):
     """
     Returns a random element from a given array, with a higher percentage to choose
     an element towards the end of the array
 
     Parameters:
         array: The array to select the element from
+        weighted_function: The weighted function used to pick elements in an array with a weighted
+                           percentage. Defaullt set to the function meant for arrays in increasing
+                           order.
     """
-    # f(x) = 1 - (2 ^ (-10x))
-
     random_num = random.random() # Get a random number
-    weighted_index_float = 1 - (2 ** (-10 * random_num)) # Input the random number into the weighted function
+    weighted_index_float = weighted_function(random_num) # Input the random number into the weighted function
     weighted_index = int(len(array) * weighted_index_float) # Turn that number (0-1) to an index (the percentage through the array)
 
     return array[weighted_index] # Return the element at the index
