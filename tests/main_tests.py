@@ -1,7 +1,7 @@
 import main
 from shakespearean_dna import *
 
-def test_sort_population():
+def test_merge_sort():
     # Setup
     genomes = ["hujlo", "hallo",  "aslla", "safea"]
     target = "hello"
@@ -13,7 +13,7 @@ def test_sort_population():
         population.append(offspring)
 
     # Invoke
-    result = main.sort_population(population)
+    result = main.merge_sort(population)
 
     assert(result[0].genome == genomes[3])
     assert(result[1].genome == genomes[2])
@@ -27,6 +27,6 @@ def test_weighted_element():
 
 
 def run_all_tests():
-    test_sort_population()
+    test_merge_sort()
 
 run_all_tests()

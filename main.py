@@ -10,89 +10,100 @@ shakespearean_settings = globals.shakespearean_settings
 
 POPULATION_SIZE = shakespearean_settings.POPULATION_SIZE
 
-def midpoint(upper_bound, lower_bound):
+def split(an_array):
     """
-    Returns the midpoint between 2 numbers
+    A helper function for mergesort.
+    Splits an array in half and returns the two halves
 
     Parameters:
-        upper_bound: The larger of the 2 numbers
-        lower_bound: The smaller number
+        an_array: The array being split
     """
-    difference = upper_bound - lower_bound
-    mid = lower_bound + int(difference / 2)
-    return mid
+    length = len(an_array)
 
-def find_index(value, array):
+    # Create the evens and odds array
+    odds = []
+    evens = []
+
+    # Copy all of the values at even indexes into evens
+    # Copy all of the values at odd indexes into odds
+    for index in range(length):
+        if index % 2 == 0:
+            evens.append(an_array[index])
+        else:
+            odds.append(an_array[index])
+
+    # Return evens, odds
+    return evens, odds
+
+def merge(left, right):
     """
-    Finds the index where an item can be inserted into an array such that
-    the final array is organized from smallest to largest by using binary
-    search techniques.
-
-    Note: This function is currently modified to only work with DNA objects,
-    as it calls fitness() when comparing elements.
+    A helper function for mergesort.
+    Merges two arrays together in a sorted fashion.
 
     Parameters:
-        value: The value of new element being inserted into the array
-        array: The array the element is being inserted into
+        left: 1 of the two arrays being merged
+        right: The other array being merged
     """
-    # Setup
-    found_index = False
-    length = len(array) # Save the length of the array
-    upper_bound = length - 1
-    lower_bound = 0
-    index = 0
+    # create the big array - big enough to hold all of the elements in
+    # left and right
+    left_length = len(left)
+    right_length = len(right)
+    merged = []
 
-    # Check for small arrays
-    if length == 0:
-        return 0
-    elif length == 1:
-        if array[0].fitness() <= value:
-            return 1
-        else:
-            return 0
+    # need 2 indexes: left, right
+    left_index = 0
+    right_index = 0
 
-    # Loop until the index is found
-    while not found_index:
-        index = midpoint(upper_bound, lower_bound) # Reset the index as the midpoint between the upper and lower bounds
-
-        if upper_bound == lower_bound:
-            if array[index].fitness() < value:
-                index += 1
-            found_index = True
-        elif upper_bound - lower_bound == 1:
-            if array[upper_bound].fitness() < value:
-                index = upper_bound + 1
-                found_index = True
-            else:
-                if array[lower_bound].fitness() <= value:
-                    index = lower_bound + 1
-                    found_index = True
-                else:
-                    index = lower_bound
-                    found_index = True
-        else:
-            if array[index].fitness() > value:
-                upper_bound = index-1
-            elif array[index].fitness() < value:
-                lower_bound = index
-            elif array[index].fitness() == value:
-                found_index = True
+    # as long as both left and right still have elements to copy
+    while left_index < left_length and right_index < right_length:
+        left_value = left[left_index].fitness()
+        right_value = right[right_index].fitness()
+        # compare the elements at indexes left and right
+        # copy the smaller into big
+        # increment the two indexes
+        if left_value < right_value:
+            merged.append(left[left_index])
+            left_index += 1
+        else: 
+            merged.append(right[right_index])
+            right_index += 1
     
-    
-    return index
+    if left_index < left_length:
+        # copy all of the lements from left into merged
+        for index in range(left_index, left_length):
+            merged.append(left[index])
+    else:
+        # copy all of the elements from right into merged
+        while right_index < right_length:
+            merged.append(right[right_index])
+            right_index += 1
 
-def sort_population(population):
+    # return big
+    return merged
+
+def merge_sort(an_array):
     """
-    Sorts an array of DNA objects by fitness using binary search techniques
+    A sorting array the sorts by breaking an array down into
+    single arrays and reconstructing it while sorting
+    the elements.
+
+    Parameters:
+        an_array: The array being sorted
     """
-    ordered_population = []
+    # Base cases
+    if len(an_array) == 0:
+        return an_array
+    elif len(an_array) == 1:
+        return an_array
+    else:
+        left, right = split(an_array)
 
-    for offspring in population:
-        offspring_fitness = offspring.fitness()
-        index = find_index(offspring_fitness, ordered_population)
-        ordered_population.insert(index, offspring)
+        sorted_left = merge_sort(left)
+        sorted_right = merge_sort(right)
 
-    return ordered_population
+        merged = merge(sorted_left, sorted_right)
+
+        return merged
 
 def weighted_element(array):
     """
@@ -149,7 +160,7 @@ def shakespearean_algorithm():
         else:
             first_generation = False
 
-        ordered_population = sort_population(population)
+        ordered_population = merge_sort(population)
         most_fit = ordered_population[len(ordered_population) - 1]
 
         print("Most fit:",most_fit.genome)
