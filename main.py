@@ -6,34 +6,19 @@ from shakespearean_dna import *
 import globals
 import random
 
-shakespearean_settings = globals.shakespearean_settings
-POPULATION_SIZE = shakespearean_settings.POPULATION_SIZE
 merge_sort = globals.merge_sort
-
-def weighted_element(array):
-    """
-    Returns a random element from a given array, with a higher percentage to choose
-    an element towards the end of the array
-
-    Parameters:
-        array: The array to select the element from
-    """
-    # f(x) = 1 - (2 ^ (-10x))
-
-    random_num = random.random() # Get a random number
-    weighted_index_float = 1 - (2 ** (-10 * random_num)) # Input the random number into the weighted function
-    weighted_index = int(len(array) * weighted_index_float) # Turn that number (0-1) to an index (the percentage through the array)
-
-    return array[weighted_index] # Return the element at the index
+weighted_element = globals.weighted_element
 
 def shakespearean_algorithm():
      # Setup
+    shakespearean_settings = globals.shakespearean_settings
     target = shakespearean_settings.target
     target_length = len(target)
     charset_length = len(globals.charset)
     population = []
     next_generation = []
     first_generation = True
+    POPULATION_SIZE = shakespearean_settings.POPULATION_SIZE
     
     # Create N offspring with random genomes
     for _ in range(0, POPULATION_SIZE):

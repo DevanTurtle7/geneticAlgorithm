@@ -1,9 +1,11 @@
 """
-Contains variables and functions that are referenced and used acrossed multiple files
+Contains variables, functions and algorithms that are referenced and used acrossed multiple files
 in this project.
 
 author: Devan Kavalchek
 """
+
+import random
 
 class algorithm_settings:
     def __init__(self, MUTATION_RATE, POPULATION_SIZE, MATING_POOL_SIZE, generation_cap, target=None):
@@ -43,6 +45,22 @@ def change_string_index(string, index, new_char):
 
     new_string = first_half + new_char + second_half # Create the new string by sandwiching the new character between the first and second halves
     return new_string
+
+def weighted_element(array):
+    """
+    Returns a random element from a given array, with a higher percentage to choose
+    an element towards the end of the array
+
+    Parameters:
+        array: The array to select the element from
+    """
+    # f(x) = 1 - (2 ^ (-10x))
+
+    random_num = random.random() # Get a random number
+    weighted_index_float = 1 - (2 ** (-10 * random_num)) # Input the random number into the weighted function
+    weighted_index = int(len(array) * weighted_index_float) # Turn that number (0-1) to an index (the percentage through the array)
+
+    return array[weighted_index] # Return the element at the index
 
 def split(an_array):
     """
