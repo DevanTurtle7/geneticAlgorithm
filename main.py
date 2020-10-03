@@ -3,6 +3,7 @@ author: Devan Kavalchek
 """
 
 from shakespearean_dna import *
+from salesman_dna import *
 import globals
 import random
 
@@ -20,7 +21,7 @@ def shakespearean_algorithm():
     first_generation = True
     POPULATION_SIZE = shakespearean_settings.POPULATION_SIZE
     
-    # Create N offspring with random genomes
+    # Create inital population: N offspring with random genomes
     for _ in range(0, POPULATION_SIZE):
         random_genome = ""
 
@@ -67,8 +68,9 @@ def shakespearean_algorithm():
             mating_pool.append(random_mate)
             ordered_population.remove(random_mate) # Remove so they are not chosen twice in a row
         
+        # Create a new generation
         children = POPULATION_SIZE // MATING_POOL_SIZE # How many children each offspring needs to have to repopulate the population
-
+        
         for mate in mating_pool:
             for _ in range(0, children): # Create the correct number of offspring to repopulate the population
                 # Pick a random mate
@@ -81,6 +83,17 @@ def shakespearean_algorithm():
 
     if optimal_genome_found:
         print("Success! It took", count, "generations!")
+
+def salesman_algorithm():
+    # Setup
+
+    # Create inital population: N offspring with random genomes
+
+    # Continue to breed new generations until the optimal genome is found
+        # Choose N mates
+        # Create a new generation
+    
+    pass
 
 def main():
    shakespearean_algorithm()
