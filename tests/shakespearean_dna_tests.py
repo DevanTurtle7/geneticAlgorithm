@@ -25,7 +25,7 @@ def test_shakespearean_dna_init():
 
 def test_shakespearean_dna_fitness():
     """
-    Tests that the dna is accurately analyzing the function of each genome
+    Tests that the dna is accurately analyzing the fitness of each genome
     """
     # Setup
     genome = "00c0e000i"
