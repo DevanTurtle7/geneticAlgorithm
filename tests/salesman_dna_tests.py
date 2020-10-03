@@ -75,7 +75,23 @@ def test_salesman_dna_mutation():
     """
     A characterization test that tests that the DNA mutates properly
     """
-    pass
+    # Setup
+    old_mutation_rate = salesman_settings.MUTATION_RATE # Remember the current mutation rate
+    salesman_settings.MUTATION_RATE = 1 # Set the mutation rate to 100% so that the function can be predictably tested
+    random.seed(123) # Set the seed so that the function can be predictably tested
+    parent_1 = salesman_dna([0, 1, 2, 3, 4, 5])
+    parent_2 = salesman_dna([0, 1, 2, 3, 4, 5])
+    expected_genome = [0, 3, 2, 1, 4, 5]
+
+    # Invoke
+    offspring = parent_1.crossover(parent_2) # Call crossover and save the returned offspring
+
+    # Analyze
+    assert(offspring.genome == expected_genome)
+
+    salesman_settings.MUTATION_RATE = old_mutation_rate # Set the mutation rate back to normal
+
+    print("test_salesman_dna_mutation passed!") # Prints if the test passes
 
 def run_all_tests():
     """

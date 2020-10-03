@@ -42,6 +42,7 @@ class salesman_dna():
         offspring = salesman_dna(new_genome) # A new offspring/child made from the new genome
 
         # Mutations
+        # Mutation works by swapping an index in the genome with another random index in the genome
         if not debug: # Don't predict if in debug mode for more predictable crossovers
             for i in range(0, len(offspring.genome)):
                 mutation_chance = random.random()
