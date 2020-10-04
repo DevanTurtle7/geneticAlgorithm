@@ -171,8 +171,8 @@ def salesman_algorithm():
         print("Success! It took", count, "generations!")
 
 def main():
-   #shakespearean_algorithm()
-   salesman_algorithm()
+   shakespearean_algorithm()
+   #salesman_algorithm()
 
 if __name__ == "__main__":
     main()

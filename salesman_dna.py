@@ -39,9 +39,11 @@ class salesman_dna():
         midpoint = random.randrange(1, len(self.genome)-1) # A random midpoint. Must include atleast 1 bit of genetic information from each parent
         new_genome = [] # A new genome made from a mix of the 2 genomes
 
+        # Add the DNA information from 0 to midpoint from self
         for index in range(0, midpoint + 1):
             new_genome.append(self.genome[index])
 
+        # Add the rest of the information from mate
         for dna in mate.genome:
             if not dna in new_genome:
                 new_genome.append(dna)
