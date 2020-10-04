@@ -6,6 +6,7 @@ from shakespearean_dna import *
 from salesman_dna import *
 import globals
 import random
+import math
 
 merge_sort = globals.merge_sort
 weighted_element = globals.weighted_element
@@ -86,17 +87,44 @@ def shakespearean_algorithm():
 
 def salesman_algorithm():
     # Setup
+    POPULATION_SIZE = salesman_settings.POPULATION_SIZE
+    population = []
+
+    # Initialize the points. In this case, the map is a circle
+    radius = 20 # The radius of the circle
+    num_points = 20 # The number of points
+    points = [] # Initialize the array for all the places
+    radians = 2 * math.pi
+
+    # Create all the points
+    for x in range(0, num_points):
+        percent = x/num_points
+        pos = radians * percent
+        points.append([math.sin(pos), math.cos(pos)])
 
     # Create inital population: N offspring with random genomes
+    for _ in range(0, POPULATION_SIZE): # Create N offspring
+        possible_points = points.copy() # Make a copy of points so that places can be removed to avoid repeats.
+        genome = [] # Initialize the genome
+
+        for _ in range(0, num_points): # Create a random genome for the current offspring
+            random_index = random.randrange(0, len(possible_points)) # Pick a random point
+            genome.append(possible_points[random_index])
+            possible_points.remove(possible_points[random_index]) # Remove the point so it can not be chosen again
+        
+        offspring = salesman_dna(genome) # Create an offspring with the genome
+        population.append(offspring) # Add the offspring to the population
 
     # Continue to breed new generations until the optimal genome is found
         # Choose N mates
+            # When choosing mates with weighted percent, DONT FORGET TO USE DECREASING_FUNCTION!!!!
         # Create a new generation
     
     pass
 
 def main():
-   shakespearean_algorithm()
+   #shakespearean_algorithm()
+   salesman_algorithm()
 
 if __name__ == "__main__":
     main()
